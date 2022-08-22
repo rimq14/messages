@@ -4,8 +4,8 @@
 import requests, json
 import os
 
-SCKEY=os.environ.get('SCKEY') ##Server酱推送KEY
-SKey=os.environ.get('SKEY') #CoolPush酷推KEY
+SCKEY=os.environ.get('SCT166683TQ5STI47YSeME5sS0xJa6XEx3') ##Server酱推送KEY
+# SKey=os.environ.get('SKEY') #CoolPush酷推KEY
 def get_iciba_everyday():
     icbapi = 'http://open.iciba.com/dsapi/'
     eed = requests.get(icbapi)
@@ -25,13 +25,13 @@ def ServerPush(info): #Server酱推送
     }
     print(content)
     requests.post(api, data=data)
-def CoolPush(info): #CoolPush酷推
-    # cpurl = 'https://push.xuthus.cc/group/'+spkey   #推送到QQ群
-    # cpurl = 'https://push.xuthus.cc/send/' + SKey  # 推送到个人QQ
-    api='https://push.xuthus.cc/send/{}'.format(SKey)
-    print(api)
-    print(info)
-    requests.post(api, info.encode('utf-8'))
+# def CoolPush(info): #CoolPush酷推
+#     # cpurl = 'https://push.xuthus.cc/group/'+spkey   #推送到QQ群
+#     # cpurl = 'https://push.xuthus.cc/send/' + SKey  # 推送到个人QQ
+#     api='https://push.xuthus.cc/send/{}'.format(SKey)
+#     print(api)
+#     print(info)
+#     requests.post(api, info.encode('utf-8'))
 def main():
     try:
         api = 'http://t.weather.itboy.net/api/weather/city/'             #API地址，必须配合城市代码使用
