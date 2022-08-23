@@ -106,7 +106,7 @@ class iciba:
                 "weather":{"value":wea},
                 "high":{"value":high},
                 "low":{'value':low},
-                "annivarsary":{"value":delta.days,'color':get_random_color()},
+                "anniversary":{"value":delta.days,'color':get_random_color()},
 #                 "birthday":{"value":get_birthday()},
                 'content': {
                     'value': iciba_everyday['content'],
