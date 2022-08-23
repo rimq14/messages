@@ -8,9 +8,8 @@ if __name__ == '__main__':
         'appid': 'wx28a17aa465aad04b', #(No.1)此处填写公众号的appid
         'appsecret': 'a8b4d4ca921d6cc9e443b27df13fbbce', #(No.2)此处填写公众号的appsecret
         'template_id': 'iL0Lz-AxuWNtlIf6eUuDwfRFWvm7lQb2-CMwTjnhe8s' #(No.3)此处填写公众号的模板消息ID
-        'city':''
-        'birthday':''
-        'annivarsary':''
+        'birthday':'1998-09-27'
+        'annivarsary':'2021-04-13'
     }
     
     # 用户列表
