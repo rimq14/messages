@@ -2,7 +2,7 @@ name: vxpusher
 on:
   # 当对分支main进行push操作的时候，这个工作流就被触发了
   schedule:
-  - cron:  '0 9-17 * * *'
+  - cron:  '0 1-10 * * *'
   workflow_dispatch:
 
 jobs:
@@ -27,6 +27,6 @@ jobs:
       APP_ID: ${{ secrets.APP_ID }}
       APP_SECRET: ${{ secrets.APP_SECRET }}
       TEMPLATE_ID2: ${{ secrets.TEMPLATE_ID }}
-      USER_ID2: ${{ secrets.USER_ID }}
+      USER_ID: ${{ secrets.USER_ID }}
       AK: ${{ secrets.AK }}
       CITY_ID: ${{ secrets.CITY_ID }}
