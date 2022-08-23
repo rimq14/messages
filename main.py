@@ -60,8 +60,8 @@ data = {
   "date":{"value":date},
   "weather":{"value":wea},
   "high":{"value":high},
-  "windClass":{'value':winClass},
-  "windDir":{"vaule":winDir},
+  "windClass":{'value':winclass},
+  "windDir":{"vaule":windir},
   "anniversary":{"value":get_count()},
   "birthday":{"value":get_birthday()},
   "words":{"value":get_words(), "color":get_random_color()}}
