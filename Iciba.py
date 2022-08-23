@@ -68,17 +68,10 @@ class iciba:
             return openids
        
     
-    # 获取天气信息    
-    def get_weather(self):
-      url = "https://api.map.baidu.com/weather/v1/?district_id=360102&data_type=all&ak=t7SXk9QH7NnT6Agqi1NKyrHnzqMTknjZ"
-      res = requests.get(url).json()
-      wea = res['result']['forecasts'][0]['text_day']
-      high = res['result']['forecasts'][0]['high']
-      low = res['result']['forecasts'][0]['low']
-      winClass = res['result']['forecasts'][0]['wc_day']
-      winDir = res['result']['forecasts'][0]['wd_day']
-      date = res['result']['forecasts'][0]['date']
-      return wea,high,low,winClass,winDir, date
+#     # 获取天气信息    
+#     def get_weather(self):
+
+#       return wea,high,low,winClass,winDir, date
     
     # 纪念日计算     
     def get_count(self, anniversary):
@@ -98,7 +91,15 @@ class iciba:
 
     
     # 发送消息
-    def send_msg(self, openid, template_id, iciba_everyday,date,wea,high,low):
+    def send_msg(self, openid, template_id, iciba_everyday):
+        url = "https://api.map.baidu.com/weather/v1/?district_id=360102&data_type=all&ak=t7SXk9QH7NnT6Agqi1NKyrHnzqMTknjZ"
+          res = requests.get(url).json()
+          wea = res['result']['forecasts'][0]['text_day']
+          high = res['result']['forecasts'][0]['high']
+          low = res['result']['forecasts'][0]['low']
+          winClass = res['result']['forecasts'][0]['wc_day']
+          winDir = res['result']['forecasts'][0]['wd_day']
+          date = res['result']['forecasts'][0]['date']
         msg = {
             'touser': openid,
             'template_id': template_id,
@@ -140,7 +141,7 @@ class iciba:
         everyday_words = self.get_iciba_everyday()
         for openid in openids:
             openid = openid.strip()
-            result = self.send_msg(openid, self.template_id, everyday_words,date,wea,high,low)
+            result = self.send_msg(openid, self.template_id, everyday_words)
             self.print_log(result, openid)
 
     # 执行
