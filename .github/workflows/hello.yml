@@ -28,5 +28,5 @@ jobs:
       - name: 'Install requests'
         run: pip install requests
         # 运行脚本
-      - name: 'Working'
-        run: python ./main.py
+      - name: '运行脚本'
+        run: python ./message.py
