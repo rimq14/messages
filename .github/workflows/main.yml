@@ -1,10 +1,9 @@
 name: vxpusher
 on:
-#   schedule:
-#   - cron:  '0 0 * * *'
-#   workflow_dispatch:
- push:
-    branches: [ main ]
+  schedule:
+  - cron:  '0 0 * * *'
+  workflow_dispatch:
+
 jobs:
   send_message:
     runs-on: ubuntu-latest
