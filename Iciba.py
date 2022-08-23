@@ -99,8 +99,6 @@ class iciba:
     
     # 发送消息
     def send_msg(self, openid, template_id, iciba_everyday, ):
-
-        weather, high, low, winclass, windir, date = get_weather()
         msg = {
             'touser': openid,
             'template_id': template_id,
