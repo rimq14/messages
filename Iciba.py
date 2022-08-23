@@ -15,8 +15,7 @@ class iciba:
         self.appid = wechat_config['appid'].strip()
         self.appsecret = wechat_config['appsecret'].strip()
         self.template_id = wechat_config['template_id'].strip()
-        
-        self.birthday = wechat_config['birthday'].strip()
+
         self.anniversary = wechat_config['anniversary'].strip()
         
         self.access_token = ''
@@ -66,25 +65,7 @@ class iciba:
         else:
             openids = data['data']['openid']
             return openids
-       
-    
-#     # 纪念日计算     
-#     def get_count(self, anniversary):
-#       delta = date - datetime.strptime(anniversary, "%Y-%m-%d")
-#       return delta.days
-    
-#     # 生日计算
-#     def get_birthday(self, birthday):
-#       next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
-#       if next < datetime.now():
-#         next = next.replace(year=next.year + 1)
-#       return (next - today).days
 
-    # 颜色随机
-    def get_random_color(self):
-      return "#%06x" % random.randint(0, 0xFFFFFF)
-
-    
     # 发送消息
     def send_msg(self, openid, template_id, iciba_everyday,anniversary):
         url = "https://api.map.baidu.com/weather/v1/?district_id=360102&data_type=all&ak=t7SXk9QH7NnT6Agqi1NKyrHnzqMTknjZ"
@@ -95,8 +76,9 @@ class iciba:
         winClass = res['result']['forecasts'][0]['wc_day']
         winDir = res['result']['forecasts'][0]['wd_day']
         date = res['result']['forecasts'][0]['date']
-        
-        delta = date - datetime.strptime(anniversary, "%Y-%m-%d")
+
+        delta = datetime.now() - datetime.strptime(anniversary, "%Y-%m-%d")
+
         msg = {
             'touser': openid,
             'template_id': template_id,
@@ -106,8 +88,9 @@ class iciba:
                 "weather":{"value":wea},
                 "high":{"value":high},
                 "low":{'value':low},
-                "anniversary":{"value":delta.days,'color':get_random_color()},
-#                 "birthday":{"value":get_birthday()},
+                "windClass":{'value':winClass},
+                "windDir":{"vaule":winDir},
+                "anniversary":{"value":delta.days},
                 'content': {
                     'value': iciba_everyday['content'],
                     'color': '#0000CD'
@@ -138,7 +121,7 @@ class iciba:
         everyday_words = self.get_iciba_everyday()
         for openid in openids:
             openid = openid.strip()
-            result = self.send_msg(openid, self.template_id, everyday_words,anniversary)
+            result = self.send_msg(openid, self.template_id, everyday_words,self.anniversary)
             self.print_log(result, openid)
 
     # 执行
