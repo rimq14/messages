@@ -29,4 +29,4 @@ jobs:
         run: pip install requests
         # 运行脚本
       - name: 'Working'
-        run: python ./weater.py
+        run: python ./main.py
