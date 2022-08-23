@@ -30,7 +30,7 @@ class iciba:
             print(' [INFO] send to %s is success' % openid)
         else:
             print(' [ERROR] (%s) %s - %s' % (errcode, errmsg, self.get_error_info(errcode)))
-            if openid is not '':
+            if openid != '':
                 print(' [ERROR] send to %s is error' % openid)
             sys.exit(1)
 
