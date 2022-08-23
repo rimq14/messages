@@ -61,9 +61,10 @@ data = {
   "high":{"value":high},
   "low" : {"value": low},
   "windClass":{'value':windclass},
-  "windDir":{"vaule": "把我吹到你身边的方向"},
+  "windDir": {"vaule": 1111},
   "anniversary":{"value":get_count()},
 #   "birthday":{"value":get_birthday()},
-  "words":{"value":get_words(), "color":get_random_color()}}
+  "words":{"value":get_words(), "color":get_random_color()},
+}
 res = wm.send_template(user_id, template_id, data)
 print(res)
