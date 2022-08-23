@@ -16,7 +16,6 @@ class iciba:
         self.appsecret = wechat_config['appsecret'].strip()
         self.template_id = wechat_config['template_id'].strip()
         
-        self.city = wechat_config['city'].strip()
         self.birthday = wechat_config['birthday'].strip()
         self.anniversary = wechat_config['anniversary'].strip()
         
