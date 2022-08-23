@@ -61,7 +61,7 @@ data = {
   "high":{"value":high},
   "low" : {"value": low},
   "windClass":{'value':windclass},
-  "windDir": {"vaule": 1111},
+  "windDir": {"vaule": "把我吹到你身边的方向"},
   "anniversary":{"value":get_count()},
 #   "birthday":{"value":get_birthday()},
   "words":{"value":get_words(), "color":get_random_color()},
