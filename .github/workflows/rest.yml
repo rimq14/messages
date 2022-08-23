@@ -1,8 +1,9 @@
 name: vxpusher
 on:
   # 当对分支main进行push操作的时候，这个工作流就被触发了
-  push:
-    branches: [ main ]
+  schedule:
+  - cron:  '0 9-17 * * *'
+  workflow_dispatch:
 
 jobs:
   send_message:
