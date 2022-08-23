@@ -5,8 +5,6 @@ import json
 import requests
 from datetime import date, datetime
 import math
-from wechatpy import WeChatClient
-from wechatpy.client.api import WeChatMessage, WeChatTemplate
 import os
 import random
 
@@ -72,15 +70,20 @@ class iciba:
        
     
     # 获取天气信息    
-    def get_weather(self, city):
-      url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=%s" % (city)
+    def get_weather(self):
+      url = "https://api.map.baidu.com/weather/v1/?district_id=360102&data_type=all&ak=t7SXk9QH7NnT6Agqi1NKyrHnzqMTknjZ"
       res = requests.get(url).json()
-      weather = res['data']['list'][0]
-      return weather['weather'], math.floor(weather['temp'])
+      weather = res['result']['forecasts'][0]['text_day']
+      high = res['result']['forecasts'][0]['high']
+      low = res['result']['forecasts'][0]['low']
+      winClass = res['result']['forecasts'][0]['wc_day']
+      winDir = res['result']['forecasts'][0]['wd_day']
+      date = res['result']['forecasts'][0]['date']
+      return weather,high,low,winClass,winDir, date
     
     # 纪念日计算     
     def get_count(self, anniversary):
-      delta = today - datetime.strptime(anniversary, "%Y-%m-%d")
+      delta = date - datetime.strptime(anniversary, "%Y-%m-%d")
       return delta.days
     
     # 生日计算
@@ -98,15 +101,17 @@ class iciba:
     # 发送消息
     def send_msg(self, openid, template_id, iciba_everyday, ):
 
-        wea, temperature = get_weather()
+        weather, high, low, winclass, windir, date = get_weather()
         msg = {
             'touser': openid,
             'template_id': template_id,
             'url': iciba_everyday['fenxiang_img'],
             'data': {
-                "weather":{"value":wea},
-                "temperature":{"value":temperature},
-                "annivarsary":{"value":get_count()},
+                "date": {"value":date},
+                "weather":{"value":weather},
+                "high":{"value":high},
+                "low":{'value':low},
+                "annivarsary":{"value":get_count(),'color':get_random_color()},
                 "birthday":{"value":get_birthday()},
                 'content': {
                     'value': iciba_everyday['content'],
