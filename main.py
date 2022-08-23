@@ -11,6 +11,9 @@ start_date = os.environ['START_DATE']
 city = os.environ['CITY']
 birthday = os.environ['BIRTHDAY']
 
+city_id = os.environ["CITY_ID"]
+ak = os.environ["AK"]
+
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
 
@@ -19,10 +22,15 @@ template_id = os.environ["TEMPLATE_ID"]
 
 
 def get_weather():
-  url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+  url = "https://api.map.baidu.com/weather/v1/?district_id=%s&data_type=all&ak=%s" % (city_id, ak)
   res = requests.get(url).json()
-  weather = res['data']['list'][0]
-  return weather['weather'], math.floor(weather['temp'])
+  weather = res['result']['forecasts'][0]['text_day']
+  high = res['result']['forecasts'][0]['high']
+  low = res['result']['forecasts'][0]['low']
+  winClass = res['result']['forecasts'][0]['wc_day']
+  winDir = res['result']['forecasts'][0]['wd_day']
+  date = res['result']['forecasts'][0]['date']
+  return weather,high,low,winClass, winDir, date
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
@@ -47,7 +55,15 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
-wea, temperature = get_weather()
-data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
+wea, high,low,winclass,windir,date = get_weather()
+data = {
+  "date":{"value":date},
+  "weather":{"value":wea},
+  "high":{"value":high},
+  "windClass":{'value':winClass},
+  "windDir":{"vaule":winDir},
+  "anniversary":{"value":get_count()},
+  "birthday":{"value":get_birthday()},
+  "words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
