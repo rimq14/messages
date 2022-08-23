@@ -3,6 +3,13 @@
 import sys
 import json
 import requests
+from datetime import date, datetime
+import math
+from wechatpy import WeChatClient
+from wechatpy.client.api import WeChatMessage, WeChatTemplate
+import os
+import random
+
 
 class iciba:
     # 初始化
@@ -10,6 +17,11 @@ class iciba:
         self.appid = wechat_config['appid'].strip()
         self.appsecret = wechat_config['appsecret'].strip()
         self.template_id = wechat_config['template_id'].strip()
+        
+        self.city = wechat_config['city'].strip()
+        self.birthday = wechat_config['birthday'].strip()
+        self.anniversary = wechat_config['anniversary'].strip()
+        
         self.access_token = ''
 
     # 错误代码
@@ -21,6 +33,7 @@ class iciba:
             40003: '不合法的 OpenID ，请开发者确认 OpenID （该用户）是否已关注公众号，或是否是其他公众号的 OpenID',
             40037: '无效的模板ID',
         }.get(errcode,'unknown error')
+    
 
     # 打印日志
     def print_log(self, data, openid=''):
@@ -56,14 +69,45 @@ class iciba:
         else:
             openids = data['data']['openid']
             return openids
+       
+    
+    # 获取天气信息    
+    def get_weather(self, city):
+      url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=%s" % (city)
+      res = requests.get(url).json()
+      weather = res['data']['list'][0]
+      return weather['weather'], math.floor(weather['temp'])
+    
+    # 纪念日计算     
+    def get_count(self, anniversary):
+      delta = today - datetime.strptime(anniversary, "%Y-%m-%d")
+      return delta.days
+    
+    # 生日计算
+    def get_birthday(self, birthday):
+      next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
+      if next < datetime.now():
+        next = next.replace(year=next.year + 1)
+      return (next - today).days
 
+    # 颜色随机
+    def get_random_color(self):
+      return "#%06x" % random.randint(0, 0xFFFFFF)
+
+    
     # 发送消息
-    def send_msg(self, openid, template_id, iciba_everyday):
+    def send_msg(self, openid, template_id, iciba_everyday, ):
+
+        wea, temperature = get_weather()
         msg = {
             'touser': openid,
             'template_id': template_id,
             'url': iciba_everyday['fenxiang_img'],
             'data': {
+                "weather":{"value":wea},
+                "temperature":{"value":temperature},
+                "annivarsary":{"value":get_count()},
+                "birthday":{"value":get_birthday()},
                 'content': {
                     'value': iciba_everyday['content'],
                     'color': '#0000CD'
