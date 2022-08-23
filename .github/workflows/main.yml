@@ -31,10 +31,6 @@ jobs:
         run: 
           pip install requests
           
-      - name: '安装json'
-        run:
-          pip install json
-        
         # 运行脚本
       - name: '运行脚本'
         run: python ./message.py
