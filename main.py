@@ -29,7 +29,7 @@ def get_weather():
   winClass = res['result']['forecasts'][0]['wc_day']
   windDir = res['result']['forecasts'][0]['wd_day']
   date = res['result']['forecasts'][0]['date']
-  return weather,high,low,winClass, windDir, date
+  return weather,high,low,winClass, date
 
 def get_count():
   delta = datetime.now() - datetime.strptime(start_date, "%Y-%m-%d")
@@ -54,14 +54,14 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
-wea, high,low,windclass,winddir,date = get_weather()
+wea, high,low,windclass,date = get_weather()
 data = {
   "date":{"value":date},
   "weather":{"value":wea},
   "high":{"value":high},
   "low" : {"value": low},
   "windClass":{'value':windclass},
-  "windDir":{"vaule":winddir},
+  "windDir":{"vaule": "把我吹到你身边的方向"},
   "anniversary":{"value":get_count()},
 #   "birthday":{"value":get_birthday()},
   "words":{"value":get_words(), "color":get_random_color()}}
