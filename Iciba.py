@@ -93,13 +93,13 @@ class iciba:
     # 发送消息
     def send_msg(self, openid, template_id, iciba_everyday):
         url = "https://api.map.baidu.com/weather/v1/?district_id=360102&data_type=all&ak=t7SXk9QH7NnT6Agqi1NKyrHnzqMTknjZ"
-          res = requests.get(url).json()
-          wea = res['result']['forecasts'][0]['text_day']
-          high = res['result']['forecasts'][0]['high']
-          low = res['result']['forecasts'][0]['low']
-          winClass = res['result']['forecasts'][0]['wc_day']
-          winDir = res['result']['forecasts'][0]['wd_day']
-          date = res['result']['forecasts'][0]['date']
+        res = requests.get(url).json()
+        wea = res['result']['forecasts'][0]['text_day']
+        high = res['result']['forecasts'][0]['high']
+        low = res['result']['forecasts'][0]['low']
+        winClass = res['result']['forecasts'][0]['wc_day']
+        winDir = res['result']['forecasts'][0]['wd_day']
+        date = res['result']['forecasts'][0]['date']
         msg = {
             'touser': openid,
             'template_id': template_id,
