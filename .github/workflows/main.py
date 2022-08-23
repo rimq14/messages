@@ -5,14 +5,14 @@ import Iciba
 if __name__ == '__main__':
     # 微信配置
     wechat_config = {
-        'appid': 'xxxxx', #(No.1)此处填写公众号的appid
-        'appsecret': 'xxxxx', #(No.2)此处填写公众号的appsecret
-        'template_id': 'xxxxx' #(No.3)此处填写公众号的模板消息ID
+        'appid': 'wx28a17aa465aad04b', #(No.1)此处填写公众号的appid
+        'appsecret': 'c5fd65d3cbad7ddf6377100269ac240c', #(No.2)此处填写公众号的appsecret
+        'template_id': 'iL0Lz-AxuWNtlIf6eUuDwfRFWvm7lQb2-CMwTjnhe8s' #(No.3)此处填写公众号的模板消息ID
     }
     
     # 用户列表
     openids = [
-        'xxxxx', #(No.4)此处填写你的微信号（微信公众平台上的微信号）
+        'ooAhR6YbwCjP3H7duOV1fka0099Q', #(No.4)此处填写你的微信号（微信公众平台上的微信号）
         #'xxxxx', #如果有多个用户也可以
         #'xxxxx',
     ]
