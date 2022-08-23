@@ -29,7 +29,10 @@ jobs:
         # 安装脚本所需的依赖
       - name: '安装依赖'
         run: 
-          pip install requests,
+          pip install requests
+          
+      - name: '安装json'
+        run:
           pip install json
         
         # 运行脚本
