@@ -33,4 +33,4 @@ jobs:
           
         # 运行脚本
       - name: '运行脚本'
-        run: python ./message.py
+        run: python ./hello.py
