@@ -4,8 +4,6 @@
 import requests, json
 import os
 
-SCKEY=os.environ.get('SCT166683TQ5STI47YSeME5sS0xJa6XEx3') ##Server酱推送KEY
-# 
 def get_iciba_everyday():
     icbapi = 'http://open.iciba.com/dsapi/'
     eed = requests.get(icbapi)
@@ -15,16 +13,16 @@ def get_iciba_everyday():
     str = '【奇怪的知识】\n' + english + '\n' + zh_CN
     return str
 
-def ServerPush(info): #Server酱推送
-    api = "https://sc.ftqq.com/{}.send".format(SCKEY)
-    title = u"天气推送"
-    content = info.replace('\n','\n\n')
-    data = {
-        "text": title,
-        "desp": content
-    }
-    print(content)
-    requests.post(api, data=data)
+# def ServerPush(info): #Server酱推送
+#     api = "https://sc.ftqq.com/{}.send".format(SCKEY)
+#     title = u"天气推送"
+#     content = info.replace('\n','\n\n')
+#     data = {
+#         "text": title,
+#         "desp": content
+#     }
+#     print(content)
+#     requests.post(api, data=data)
 
 def main():
     try:
@@ -57,7 +55,7 @@ def main():
                    "\n风力风向: " + fx + fl + "\n感冒指数: "  + ganmao + "\n温馨提示： " + tips + "\n更新时间: " + update_time + "\n✁-----------------------------------------\n" + get_iciba_everyday()
             # print(tdwt)
             requests.post(cpurl,tdwt.encode('utf-8'))         #把天气数据转换成UTF-8格式，不然要报错。
-            ServerPush(tdwt)
+#             ServerPush(tdwt)
             
     except Exception:
         error = '【出现错误】\n　　今日天气推送错误，请检查服务或网络状态！'
