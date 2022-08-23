@@ -68,26 +68,21 @@ class iciba:
             return openids
        
     
-#     # 获取天气信息    
-#     def get_weather(self):
-
-#       return wea,high,low,winClass,winDir, date
+#     # 纪念日计算     
+#     def get_count(self, anniversary):
+#       delta = date - datetime.strptime(anniversary, "%Y-%m-%d")
+#       return delta.days
     
-    # 纪念日计算     
-    def get_count(self, anniversary):
-      delta = date - datetime.strptime(anniversary, "%Y-%m-%d")
-      return delta.days
-    
-    # 生日计算
-    def get_birthday(self, birthday):
-      next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
-      if next < datetime.now():
-        next = next.replace(year=next.year + 1)
-      return (next - today).days
+#     # 生日计算
+#     def get_birthday(self, birthday):
+#       next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
+#       if next < datetime.now():
+#         next = next.replace(year=next.year + 1)
+#       return (next - today).days
 
-    # 颜色随机
-    def get_random_color(self):
-      return "#%06x" % random.randint(0, 0xFFFFFF)
+#     # 颜色随机
+#     def get_random_color(self):
+#       return "#%06x" % random.randint(0, 0xFFFFFF)
 
     
     # 发送消息
@@ -109,8 +104,8 @@ class iciba:
                 "weather":{"value":wea},
                 "high":{"value":high},
                 "low":{'value':low},
-                "annivarsary":{"value":get_count(),'color':get_random_color()},
-                "birthday":{"value":get_birthday()},
+#                 "annivarsary":{"value":get_count(),'color':get_random_color()},
+#                 "birthday":{"value":get_birthday()},
                 'content': {
                     'value': iciba_everyday['content'],
                     'color': '#0000CD'
