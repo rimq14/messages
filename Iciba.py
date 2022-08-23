@@ -98,7 +98,7 @@ class iciba:
 
     
     # 发送消息
-    def send_msg(self, openid, template_id, iciba_everyday, ):
+    def send_msg(self, openid, template_id, iciba_everyday,date,weather,high,low):
         msg = {
             'touser': openid,
             'template_id': template_id,
