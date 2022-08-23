@@ -86,7 +86,7 @@ class iciba:
 
     
     # 发送消息
-    def send_msg(self, openid, template_id, iciba_everyday):
+    def send_msg(self, openid, template_id, iciba_everyday,anniversary):
         url = "https://api.map.baidu.com/weather/v1/?district_id=360102&data_type=all&ak=t7SXk9QH7NnT6Agqi1NKyrHnzqMTknjZ"
         res = requests.get(url).json()
         wea = res['result']['forecasts'][0]['text_day']
@@ -138,7 +138,7 @@ class iciba:
         everyday_words = self.get_iciba_everyday()
         for openid in openids:
             openid = openid.strip()
-            result = self.send_msg(openid, self.template_id, everyday_words)
+            result = self.send_msg(openid, self.template_id, everyday_words,anniversary)
             self.print_log(result, openid)
 
     # 执行
