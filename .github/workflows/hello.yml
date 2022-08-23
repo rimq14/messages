@@ -29,7 +29,4 @@ jobs:
         run: pip install requests
         # 运行脚本
       - name: 'Working'
-        env:	#添加环境变量
-          SCKEY: ${{ secrets.SCKEY }}
-          SKEY: ${{ secrets.SKEY }}
         run: python ./weater.py
