@@ -80,9 +80,9 @@ class iciba:
 #         next = next.replace(year=next.year + 1)
 #       return (next - today).days
 
-#     # 颜色随机
-#     def get_random_color(self):
-#       return "#%06x" % random.randint(0, 0xFFFFFF)
+    # 颜色随机
+    def get_random_color(self):
+      return "#%06x" % random.randint(0, 0xFFFFFF)
 
     
     # 发送消息
@@ -95,6 +95,8 @@ class iciba:
         winClass = res['result']['forecasts'][0]['wc_day']
         winDir = res['result']['forecasts'][0]['wd_day']
         date = res['result']['forecasts'][0]['date']
+        
+        delta = date - datetime.strptime(anniversary, "%Y-%m-%d")
         msg = {
             'touser': openid,
             'template_id': template_id,
@@ -104,7 +106,7 @@ class iciba:
                 "weather":{"value":wea},
                 "high":{"value":high},
                 "low":{'value':low},
-#                 "annivarsary":{"value":get_count(),'color':get_random_color()},
+                "annivarsary":{"value":delta.days,'color':get_random_color()},
 #                 "birthday":{"value":get_birthday()},
                 'content': {
                     'value': iciba_everyday['content'],
