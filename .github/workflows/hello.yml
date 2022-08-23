@@ -29,4 +29,4 @@ jobs:
         run: pip install requests
         # 运行脚本
       - name: '运行脚本'
-        run: python ./message.py
+        run: python message.py
