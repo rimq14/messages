@@ -1,34 +1,32 @@
-# name属性用来指定这个工作流的名字
-name: wxpusher
-
-# 这个部分用来指定能够触发工作流执行的事件
+name: morning
 on:
   schedule:
   - cron:  '0 0 * * *'
   workflow_dispatch:
 
-# 工作流是由一个或多个的jobs构成的，在jobs里来说明要交给GitHub aciton执行的任务
 jobs:
-  # 这个jobs中的一个任务，名字叫build(随便怎么取)
-  build:
-    # 用来指定这个任务在什么操作系统上跑(服务器是GitHub免费提供的)
+  send_message:
     runs-on: ubuntu-latest
+    name: send morning to your girlfriend
+
     steps:
-    # 首先copy git仓库到虚拟机上
-      - name: Checkout
-        uses: actions/checkout@v2
-        
-        # 安装初始化python
-      - name: 'Set up Python'
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.8
-          
-        # 安装脚本所需的依赖
-      - name: '安装依赖'
-        run: 
-          pip install requests
-          
-        # 运行脚本
-      - name: '运行脚本'
-        run: python hello.py
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        ref: master
+
+    - name: sender
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        architecture: 'x64'
+    - run: pip install -r ./requirements.txt && python ./main.py
+
+    env:
+      APP_ID: ${{ secrets.APP_ID }}
+      APP_SECRET: ${{ secrets.APP_SECRET }}
+      TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
+      USER_ID: ${{ secrets.USER_ID }}
+      START_DATE: ${{ secrets.START_DATE }}
+      BIRTHDAY: ${{ secrets.BIRTHDAY }}
+      CITY: ${{ secrets.CITY }}
