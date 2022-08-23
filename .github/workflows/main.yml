@@ -19,14 +19,19 @@ jobs:
     # 首先copy git仓库到虚拟机上
       - name: Checkout
         uses: actions/checkout@v2
+        
         # 安装初始化python
       - name: 'Set up Python'
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
+          
         # 安装脚本所需的依赖
-      - name: 'Install requests'
-        run: pip install requests
+      - name: '安装依赖'
+        run: 
+          pip install requests,
+          pip install json
+        
         # 运行脚本
       - name: '运行脚本'
-        run: python message.py
+        run: python ./message.py
