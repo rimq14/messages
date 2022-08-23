@@ -59,6 +59,7 @@ data = {
   "date":{"value":date},
   "weather":{"value":wea},
   "high":{"value":high},
+  "low" : {"value": low},
   "windClass":{'value':windclass},
   "windDir":{"vaule":winddir},
   "anniversary":{"value":get_count()},
