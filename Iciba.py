@@ -140,7 +140,7 @@ class iciba:
         everyday_words = self.get_iciba_everyday()
         for openid in openids:
             openid = openid.strip()
-            result = self.send_msg(openid, self.template_id, everyday_words)
+            result = self.send_msg(openid, self.template_id, everyday_words,date,weather,high,low)
             self.print_log(result, openid)
 
     # 执行
