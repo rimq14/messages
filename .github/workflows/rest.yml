@@ -1,35 +1,35 @@
-name: vxpusher
-on:
-  # 当对分支main进行push操作的时候，这个工作流就被触发了
-  schedule:
-  - cron:  '0 1-10 * * *'
-  workflow_dispatch:
-  # 当对分支main进行push操作的时候，这个工作流就被触发了
-#   push:
-#     branches: [ main ]
+# name: vxpusher
+# on:
+#   # 当对分支main进行push操作的时候，这个工作流就被触发了
+#   schedule:
+#   - cron:  '0 1-10 * * *'
+#   workflow_dispatch:
+#   # 当对分支main进行push操作的时候，这个工作流就被触发了
+# #   push:
+# #     branches: [ main ]
 
-jobs:
-  send_message:
-    runs-on: ubuntu-latest
-    name: send rest to your girlfriend
+# jobs:
+#   send_message:
+#     runs-on: ubuntu-latest
+#     name: send rest to your girlfriend
 
-    steps:
-       # 首先copy git仓库到虚拟机上
-      - name: Checkout
-        uses: actions/checkout@v2
+#     steps:
+#        # 首先copy git仓库到虚拟机上
+#       - name: Checkout
+#         uses: actions/checkout@v2
         
-        # 安装初始化python
-      - name: 'Set up Python'
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.8
-          architecture: 'x64'
-      - run: pip install -r ./requirements.txt && python ./rest.py
+#         # 安装初始化python
+#       - name: 'Set up Python'
+#         uses: actions/setup-python@v1
+#         with:
+#           python-version: 3.8
+#           architecture: 'x64'
+#       - run: pip install -r ./requirements.txt && python ./rest.py
 
-    env:
-      APP_ID: ${{ secrets.APP_ID }}
-      APP_SECRET: ${{ secrets.APP_SECRET }}
-      TEMPLATE_ID2: ${{ secrets.TEMPLATE_ID2 }}
-      USER_ID: ${{ secrets.USER_ID }}
-      AK: ${{ secrets.AK }}
-      CITY_ID: ${{ secrets.CITY_ID }}
+#     env:
+#       APP_ID: ${{ secrets.APP_ID }}
+#       APP_SECRET: ${{ secrets.APP_SECRET }}
+#       TEMPLATE_ID2: ${{ secrets.TEMPLATE_ID2 }}
+#       USER_ID: ${{ secrets.USER_ID }}
+#       AK: ${{ secrets.AK }}
+#       CITY_ID: ${{ secrets.CITY_ID }}
