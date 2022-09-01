@@ -1,36 +1,36 @@
-name: vxpusher
-on:
-  schedule:
-  - cron:  '0 0 * * *'
-  workflow_dispatch:
+# name: vxpusher
+# on:
+#   schedule:
+#   - cron:  '0 0 * * *'
+#   workflow_dispatch:
 
-jobs:
-  send_message:
-    runs-on: ubuntu-latest
-    name: send morning to your girlfriend
+# jobs:
+#   send_message:
+#     runs-on: ubuntu-latest
+#     name: send morning to your girlfriend
 
-    steps:
-       # 首先copy git仓库到虚拟机上
-      - name: Checkout
-        uses: actions/checkout@v2
+#     steps:
+#        # 首先copy git仓库到虚拟机上
+#       - name: Checkout
+#         uses: actions/checkout@v2
         
-        # 安装初始化python
-      - name: 'Set up Python'
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.8
-          architecture: 'x64'
-      - run: pip install -r ./requirements.txt && python ./main.py
+#         # 安装初始化python
+#       - name: 'Set up Python'
+#         uses: actions/setup-python@v1
+#         with:
+#           python-version: 3.8
+#           architecture: 'x64'
+#       - run: pip install -r ./requirements.txt && python ./main.py
 
-    env:
-      APP_ID: ${{ secrets.APP_ID }}
-      APP_SECRET: ${{ secrets.APP_SECRET }}
-      TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
-      USER_ID: ${{ secrets.USER_ID }}
-      START_DATE: ${{ secrets.START_DATE }}
-      BIRTHDAY: ${{ secrets.BIRTHDAY }}
-      CITY: ${{ secrets.CITY }}
-      AK: ${{ secrets.AK }}
-      CITY_ID: ${{ secrets.CITY_ID }}
+#     env:
+#       APP_ID: ${{ secrets.APP_ID }}
+#       APP_SECRET: ${{ secrets.APP_SECRET }}
+#       TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
+#       USER_ID: ${{ secrets.USER_ID }}
+#       START_DATE: ${{ secrets.START_DATE }}
+#       BIRTHDAY: ${{ secrets.BIRTHDAY }}
+#       CITY: ${{ secrets.CITY }}
+#       AK: ${{ secrets.AK }}
+#       CITY_ID: ${{ secrets.CITY_ID }}
       
       
